@@ -19,6 +19,12 @@ namespace TechJobs.Controllers
         {
             List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
             ViewBag.columns = ListController.columnChoices;
+            if ( string.IsNullOrEmpty(searchTerm))
+            {
+                jobs = JobData.FindAll();
+                ViewBag.jobs = jobs;
+                return View("index");
+            }
 
             if (searchType == "all")
             {
